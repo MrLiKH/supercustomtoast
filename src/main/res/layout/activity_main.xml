@@ -48,11 +48,6 @@
         android:layout_height="wrap_content"
         android:text="自定义布局" />
 
-    <Button
-        android:id="@+id/showToast8"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:text="自定义布局" />
 
 
 </LinearLayout>
