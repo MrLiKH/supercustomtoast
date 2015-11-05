@@ -1,11 +1,58 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".MainActivity">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/showToast1"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="默认Toast" />
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/showToast2"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="自定义5秒" />
+
+    <Button
+        android:id="@+id/showToast3"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="背景+文字" />
+
+    <Button
+        android:id="@+id/showToast4"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="背景为图片" />
+
+    <Button
+        android:id="@+id/showToast5"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="自定义动画" />
+
+    <Button
+        android:id="@+id/showToast6"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="显示logo" />
+
+    <Button
+        android:id="@+id/showToast7"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="自定义布局" />
+
+    <Button
+        android:id="@+id/showToast8"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="自定义布局" />
+
+
+</LinearLayout>
