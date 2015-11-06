@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
 
                 ImageView iv = new ImageView(MainActivity.this);
                 iv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-                iv.setImageResource(R.mipmap.logo1);
+                iv.setImageResource(R.mipmap.ic_launcher);
 
                 toast.show(iv);
             }
