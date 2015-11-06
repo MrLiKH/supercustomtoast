@@ -5,7 +5,7 @@
 
 当然系统的Taost,也暴露了部分的方法，
  见下图：
-![](http://ww2.sinaimg.cn/large/74311666jw1exr0g3jhygj20ey08uab1.jpg =250x200)   
+![](http://ww2.sinaimg.cn/large/74311666jw1exr0g3jhygj20ey08uab1.jpg)   
 可以借助这些方法设置直接替换视图、设置显示时长、设置边距属性、设置显示位置、设置显示文字内容。  
 
 不过，这些远远不够，比如时间的设置。还有最重要的，是系统原生的Toast是呈队列显示，必须要等到前一条Toast消失才会显示下一条。明明是状态已经改变，可是上一状态的Toast还迟迟没有消失。  
