@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         toast = SuperCustomToast.getInstance(getApplicationContext());
         final StringBuffer sb = new StringBuffer("默认Toast");
         final String info = "默认Toast-";
+        final String sameString = "相同信息Toast";
         /**
          * 默认Toast
          */
@@ -67,11 +68,12 @@ public class MainActivity extends AppCompatActivity {
          * 自定义Toast,5秒
          */
         showToast2.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 //持续5000毫秒
-                toast.show(info + i++, 5000);
+//                toast.show(info + i++, 5000);
+                toast.showSameMsg(sameString, 5000);
+
             }
         });
 
@@ -154,7 +156,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 ImageView iv = new ImageView(MainActivity.this);
-                iv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                iv.setLayoutParams(new ViewGroup.LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                 iv.setImageResource(R.mipmap.ic_launcher);
 
                 toast.show(iv);
@@ -174,4 +177,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        toast.hideToast();
+        toast.mView.removeAllViews();
+        toast.initView();
+    }
+
 }

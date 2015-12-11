@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Handler;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,7 @@ import android.widget.Toast;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.Date;
 
 /**
  * Do Good App
@@ -143,7 +145,7 @@ public class SuperCustomToast {
     /**
      * 初始化视图控件
      */
-    private void initView() {
+    public void initView() {
         mHandler = new Handler(mContext.getMainLooper());
 
         lp_WW = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
@@ -178,20 +180,23 @@ public class SuperCustomToast {
 
         resetDefaultBackgroundAndTextColor();
     }
+
     /**
      * 显示一条Toast
+     *
      * @param msg 消息内容
      */
-    public void show(String msg,int layoutId,int rootId,Activity activity){
+    public void show(String msg, int layoutId, int rootId, Activity activity) {
         LayoutInflater inflater = activity.getLayoutInflater();
         layout = inflater.inflate(layoutId,
-                (ViewGroup)activity.findViewById(rootId));
+                (ViewGroup) activity.findViewById(rootId));
         layout.setLayoutParams(lp_WW);
         TextView title = (TextView) layout.findViewById(R.id.title);
         title.setText(msg);
         title.setTextColor(defaultTextColor);
         show(layout, null, null, null);
     }
+
     /**
      * 显示一条Toast
      *
@@ -218,6 +223,40 @@ public class SuperCustomToast {
      */
     public void show(String msg, long duration) {
         show(getTextView(msg), duration, null, null);
+    }
+
+    /**
+     * 一个toast已经显示,在下一个msg相同的情况下,
+     * 一定时间不显示新的toast.
+     * 如果同样的消息,在两次显示时间差
+     * 大于duration的情况下,才出现新的toast
+     * @param msg      消息内容
+     * @param duration 持续时间，单位为毫秒
+     */
+    Long totalTime;
+    public void setTime(Long time){
+        this.totalTime = time;
+    }
+    private boolean firstCalled = true;
+    String lastMsg;
+    long startTime;
+    public void showSameMsg(String msg, long duration) {
+        if (firstCalled) {
+            lastMsg = msg;
+            show(getTextView(msg), duration, null, null);
+            firstCalled = false;
+            //第一次调用的时间
+            startTime =  (new Date()).getTime();
+        } else if (msg.equals(lastMsg)) {
+            long endTime =  (new Date()).getTime();
+            long totalTime = endTime - startTime;
+            Log.e("time","开始时间："+startTime +"  结束时间： "+endTime+"  总时间"+totalTime);
+            //第二次相同
+            if(totalTime > duration){
+                show(getTextView(msg), duration, null, null);
+                startTime = endTime;
+            }
+        }
     }
 
     /**
@@ -484,7 +523,7 @@ public class SuperCustomToast {
     /**
      * 通过反射获得的hide方法隐藏指定View
      */
-    private void hideToast() {
+    public void hideToast() {
         try {
             hideMethod.invoke(mObj, new Object[0]);
             hasReflectException = false;
@@ -493,4 +532,10 @@ public class SuperCustomToast {
             System.out.println(e.getMessage());
         }
     }
+
+    public void removeView(){
+
+
+    }
+
 }
